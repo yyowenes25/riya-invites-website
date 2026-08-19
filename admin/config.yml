@@ -29,18 +29,21 @@ collections:
             fields:
               - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
+              - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
           - label: "Standard Couple Edition"
             name: "standard"
             widget: "object"
             fields:
               - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
+              - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
           - label: "Full Custom Storyline"
             name: "custom"
             widget: "object"
             fields:
               - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
+              - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
 
   - name: "testimonials"
     label: "Testimonials"
