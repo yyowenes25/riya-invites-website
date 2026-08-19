@@ -18,15 +18,7 @@ async function loadJSON(path) {
   }
 }
 
-async function applySettings() {
-  const settings = await loadJSON('/content/settings.json');
-  if (!settings) return;
-  if (settings.logoUrl) {
-    document.querySelectorAll('.logo').forEach((el) => {
-      el.innerHTML = `<img src="${settings.logoUrl}" alt="Riya Invites" style="height:2.2rem; display:block;">`;
-    });
-  }
-}
+async function applySettings() { const settings = await loadJSON('/content/settings.json'); if (!settings) return; if (settings.logoUrl) { document.querySelectorAll('.logo').forEach((el) => { el.innerHTML = `<img src="${settings.logoUrl}" alt="Riya Invites" style="height:4.5rem; display:block;">`; }); } if (settings.tagline) { const heroTag = document.getElementById('heroTagline'); if (heroTag) heroTag.textContent = settings.tagline; } }
 
 async function applyPricing() {
   const pricing = await loadJSON('/content/pricing.json');
