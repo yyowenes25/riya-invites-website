@@ -1,5 +1,5 @@
 {
-  "minimalist": { "price": 80, "originalPrice": null },
-  "standard": { "price": 120, "originalPrice": null },
-  "custom": { "price": 300, "originalPrice": null }
+  "minimalist": { "price": 80, "originalPrice": null, "previewVideo": "" },
+  "standard": { "price": 120, "originalPrice": null, "previewVideo": "" },
+  "custom": { "price": 300, "originalPrice": null, "previewVideo": "" }
 }
