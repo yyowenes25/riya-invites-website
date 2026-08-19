@@ -107,7 +107,7 @@
         </div>
         <div class="product-body">
           <h3>Minimalist Elegant</h3>
-          <p class="product-price">RM80</p>
+          <p class="product-price" data-price-id="price-minimalist">RM80</p>
           <ul class="product-list">
             <li>Clean, refined cinematic style</li>
             <li>Custom names & event details</li>
@@ -126,7 +126,7 @@
         </div>
         <div class="product-body">
           <h3>Standard Couple Edition</h3>
-          <p class="product-price">RM120</p>
+          <p class="product-price" data-price-id="price-standard">RM120</p>
           <ul class="product-list">
             <li>Choice of cinematic template</li>
             <li>Custom face-styled characters</li>
@@ -146,7 +146,7 @@
         </div>
         <div class="product-body">
           <h3>Full Custom Storyline</h3>
-          <p class="product-price">RM300</p>
+          <p class="product-price" data-price-id="price-custom">RM300</p>
           <ul class="product-list">
             <li>Fully original scenes, built from scratch</li>
             <li>Your own dream-film aesthetic</li>
@@ -186,7 +186,7 @@
       <span class="eyebrow">Kind Words</span>
       <h2 class="on-dark">From couples we've worked with</h2>
     </div>
-    <div class="quote-grid">
+    <div class="quote-grid" id="testimonialsContainer">
       <div class="quote-card">
         <p class="quote-text">"It felt like watching our own movie trailer — our families were in tears."</p>
         <p class="quote-attr">Placeholder — customer name<br><span class="ph-note" style="position:static; display:inline-block; margin-top:6px;">Testimonial placeholder</span></p>
@@ -210,7 +210,7 @@
       <span class="eyebrow">A Look Inside</span>
       <h2>From the portfolio</h2>
     </div>
-    <div class="gallery-grid">
+    <div class="gallery-grid" id="galleryContainer">
       <div class="gallery-item">Sample<br>01</div>
       <div class="gallery-item">Sample<br>02</div>
       <div class="gallery-item">Sample<br>03</div>
@@ -300,5 +300,19 @@
 </svg>
 
 <script src="js/main.js"></script>
+
+<!-- Netlify Identity: required so the CMS invite/login email links work correctly -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", (user) => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
