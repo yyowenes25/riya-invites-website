@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart — Riya Invites</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <a href="index.html" class="logo">Riya <em>Invites</em></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="invitations.html">Invitations</a></li>
+      <li><a href="gifts.html">Gifts</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon" aria-label="Cart">&#9862;<span class="cart-count" id="cartCount">0</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </nav>
+</header>
+
+<section>
+  <div class="wrap" style="max-width: 760px;">
+    <span class="eyebrow">Checkout</span>
+    <h1 class="mb-2" style="font-size: var(--step-5);">Your Cart</h1>
+
+    <div class="form-card">
+      <p style="color: var(--ink-soft);">
+        This is a placeholder cart view. Items added from the Invitations page appear here for this session.
+        In production, this page will connect to <strong>Stripe Checkout</strong> so customers can pay securely,
+        directly on this page — no manual invoicing needed.
+      </p>
+      <div class="text-center mt-3">
+        <a href="invitations.html" class="btn btn-outline">Continue Browsing</a>
+      </div>
+    </div>
+
+    <div class="form-card mt-2">
+      <h3 style="font-size: var(--step-3); margin-bottom: 0.8rem;">Next step for the developer</h3>
+      <p style="color: var(--ink-soft); font-size: var(--step-1);">
+        Wire this page to a Stripe Checkout Session via a Netlify serverless function
+        (<code>/netlify/functions/create-checkout-session</code>), passing the selected package's price ID.
+        On success, redirect to a confirmation page; on cancel, return here.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>&copy; 2026 Riya Invites. All rights reserved.</span>
+      <span>Made in Malaysia</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

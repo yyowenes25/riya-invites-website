@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Riya Invites</title>
+<meta name="description" content="Send an inquiry to Riya Invites for a custom wedding invitation or gift.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <a href="index.html" class="logo">Riya <em>Invites</em></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="invitations.html">Invitations</a></li>
+      <li><a href="gifts.html">Gifts</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" aria-current="page">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon" aria-label="Cart">&#9862;<span class="cart-count" id="cartCount">0</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" style="padding-block: clamp(3rem,6vw,4.5rem);">
+  <div class="wrap">
+    <span class="eyebrow on-dark">Get In Touch</span>
+    <h1 class="on-dark" style="font-size: var(--step-5);">Tell us about your story</h1>
+    <p class="lede on-dark">For custom requests, gift inquiries, or if you're just not sure where to start — send us your details and we'll follow up personally.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width: 760px;">
+    <form class="form-card" id="inquiryForm">
+      <div class="form-row">
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="field">
+          <label for="interest">I'm interested in</label>
+          <select id="interest" name="interest">
+            <option>Minimalist Elegant — RM80</option>
+            <option>Standard Couple Edition — RM120</option>
+            <option>Full Custom Storyline — RM300</option>
+            <option>A Gift (Anniversary / Valentine's / Couple Art)</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="address">Address <span style="font-weight:400; text-transform:none;">(for physical gifts, if applicable)</span></label>
+        <input type="text" id="address" name="address">
+      </div>
+      <div class="field">
+        <label for="message">Tell us about your event</label>
+        <textarea id="message" name="message" placeholder="Wedding date, names, language preferences, song ideas — anything that helps us understand your story."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Inquiry</button>
+      <p id="formStatus" style="display:none; margin-top:1rem; font-size: var(--step-1); color: var(--emerald-deep);"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">Riya <em>Invites</em></span>
+        <p>Cinematic wedding invitations and personalised gifts for Tamil couples across Malaysia.</p>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><ul>
+        <li><a href="invitations.html">Invitations</a></li>
+        <li><a href="gifts.html">Gifts</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Studio</h4><ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Follow</h4><ul>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">WhatsApp</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Riya Invites. All rights reserved.</span>
+      <span>Made in Malaysia</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
