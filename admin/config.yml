@@ -1,0 +1,87 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - file: "content/settings.json"
+        label: "Logo & General Settings"
+        name: "settings"
+        fields:
+          - { label: "Logo Image", name: "logoUrl", widget: "image", required: false, hint: "Upload your logo. If left empty, the text logo 'Riya Invites' is used." }
+          - { label: "Tagline (shown under logo area on some pages)", name: "tagline", widget: "string", required: false }
+
+  - name: "pricing"
+    label: "Invitation Pricing"
+    files:
+      - file: "content/pricing.json"
+        label: "Invitation Packages"
+        name: "pricing"
+        fields:
+          - label: "Minimalist Elegant"
+            name: "minimalist"
+            widget: "object"
+            fields:
+              - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
+              - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
+          - label: "Standard Couple Edition"
+            name: "standard"
+            widget: "object"
+            fields:
+              - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
+              - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
+          - label: "Full Custom Storyline"
+            name: "custom"
+            widget: "object"
+            fields:
+              - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
+              - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    files:
+      - file: "content/testimonials/index.json"
+        label: "Testimonials List"
+        name: "testimonials"
+        fields:
+          - label: "Testimonials"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Customer Name", name: "name", widget: "string" }
+              - { label: "Quote", name: "quote", widget: "text" }
+
+  - name: "gallery"
+    label: "Portfolio Gallery"
+    files:
+      - file: "content/gallery/index.json"
+        label: "Gallery Images"
+        name: "gallery"
+        fields:
+          - label: "Images"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+
+  - name: "gifts"
+    label: "Gift Products"
+    files:
+      - file: "content/gifts/index.json"
+        label: "Gift Products List"
+        name: "gifts"
+        fields:
+          - label: "Products"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Starting Price (RM)", name: "price", widget: "number", value_type: "int", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
