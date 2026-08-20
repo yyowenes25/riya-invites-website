@@ -1,5 +1,17 @@
 {
-  "minimalist": { "price": 80, "originalPrice": null, "previewVideo": "" },
-  "standard": { "price": 120, "originalPrice": null, "previewVideo": "" },
-  "custom": { "price": 300, "originalPrice": null, "previewVideo": "" }
+  "minimalist": {
+    "price": 80,
+    "originalPrice": null,
+    "previewVideo": ""
+  },
+  "standard": {
+    "price": 120,
+    "originalPrice": null,
+    "previewVideo": "/images/uploads/new-project-79-09f15ff-.mp4"
+  },
+  "custom": {
+    "price": 300,
+    "originalPrice": null,
+    "previewVideo": ""
+  }
 }
