@@ -90,6 +90,19 @@ function initPortfolioTabs() {
   activate(validInitial ? initial : panels[0].id);
 }
 
+async function applyGiftPricing() {
+  const giftPricing = await loadJSON('/content/giftPricing.json');
+  if (!giftPricing) return;
+  const map = { anniversary: 'price-gift-anniversary', valentines: 'price-gift-valentines', coupleArt: 'price-gift-coupleart' };
+  Object.entries(map).forEach(([key, id]) => {
+    const data = giftPricing[key];
+    if (!data) return;
+    document.querySelectorAll(`[data-price-id="${id}"]`).forEach((el) => {
+      el.textContent = data.price ? `RM${data.price}` : 'RM—';
+    });
+  });
+}
+
 async function applyTestimonials() {
   const container = document.getElementById('testimonialsContainer');
   if (!container) return;
@@ -120,6 +133,7 @@ async function applyGallery() {
 document.addEventListener('DOMContentLoaded', () => {
   applySettings();
   applyPricing();
+  applyGiftPricing();
   applyTestimonials();
   applyGallery();
   initPortfolioTabs();

@@ -45,6 +45,29 @@ collections:
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
               - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
 
+  - name: "giftPricing"
+    label: "Gift Pricing"
+    files:
+      - file: "content/giftPricing.json"
+        label: "Gift Prices"
+        name: "giftPricing"
+        fields:
+          - label: "Anniversary Gifts"
+            name: "anniversary"
+            widget: "object"
+            fields:
+              - { label: "Price (RM) — leave blank to show 'RM—'", name: "price", widget: "number", value_type: "int", required: false }
+          - label: "Valentine's Gifts"
+            name: "valentines"
+            widget: "object"
+            fields:
+              - { label: "Price (RM) — leave blank to show 'RM—'", name: "price", widget: "number", value_type: "int", required: false }
+          - label: "Custom Couple Art"
+            name: "coupleArt"
+            widget: "object"
+            fields:
+              - { label: "Price (RM) — leave blank to show 'RM—'", name: "price", widget: "number", value_type: "int", required: false }
+
   - name: "testimonials"
     label: "Testimonials"
     files:
