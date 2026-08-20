@@ -1,5 +1,17 @@
 {
-  "minimalistic": { "price": 80, "originalPrice": null, "previewVideo": "" },
-  "classicCinematic": { "price": 120, "originalPrice": null, "previewVideo": "/images/uploads/new-project-79-09f15ff-1-.mp4" },
-  "filmyEdition": { "price": 300, "originalPrice": null, "previewVideo": "" }
+  "minimalistic": {
+    "price": 80,
+    "originalPrice": null,
+    "previewVideo": "/images/uploads/new-project-84-d4c8611-1-1-.mp4"
+  },
+  "classicCinematic": {
+    "price": 120,
+    "originalPrice": null,
+    "previewVideo": "/images/uploads/new-project-79-09f15ff-1-.mp4"
+  },
+  "filmyEdition": {
+    "price": 300,
+    "originalPrice": null,
+    "previewVideo": "/images/uploads/new-project-84-b163cf1-1-1-.mp4"
+  }
 }
