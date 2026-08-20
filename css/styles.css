@@ -346,7 +346,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.4em 0.8em;
-   z-index: 2;
+  z-index: 2;
 }
 
 .product-body { padding: 1.6rem 1.5rem 1.8rem; display: flex; flex-direction: column; gap: 0.9rem; flex: 1; }
@@ -465,8 +465,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   padding: 0.35em 0.8em;
 }
 
-/* Placeholder content marker — visually flags swappable assets during build,
-   remove/hide once real assets are uploaded via CMS */
+/* ---- Placeholder content marker ---- */
 .ph-note {
   position: absolute;
   bottom: 10px; right: 10px;
@@ -478,3 +477,86 @@ section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
   padding: 0.3em 0.6em;
   border-radius: 2px;
 }
+
+/* ---- Portfolio tabs ---- */
+.portfolio-tabs {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(182,138,78,0.3);
+}
+.portfolio-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 0.9em 1.4em;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--step-1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.portfolio-tab-btn:hover { color: var(--emerald-deep); }
+.portfolio-tab-btn.active { color: var(--maroon); border-bottom-color: var(--maroon); }
+
+.portfolio-tab-panel { display: none; }
+.portfolio-tab-panel.active { display: block; }
+
+.portfolio-item-card {
+  position: relative;
+  aspect-ratio: 3/4;
+  background: linear-gradient(160deg, #1E4238, #16302A);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+.portfolio-item-card .placeholder-label {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(246,239,228,0.55);
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: var(--step-2);
+  text-align: center;
+  padding: 1rem;
+}
+.portfolio-item-foot {
+  position: relative;
+  z-index: 2;
+  background: rgba(14,33,28,0.85);
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+.portfolio-item-foot .price { color: var(--gold-light); font-family: var(--font-display); font-size: var(--step-2); }
+.portfolio-item-foot .btn { padding: 0.6em 1em; font-size: 0.7rem; }
+
+/* ---- Comparison table ---- */
+.compare-table-wrap { overflow-x: auto; }
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+}
+.compare-table th, .compare-table td {
+  text-align: left;
+  padding: 1em 1.2em;
+  border-bottom: 1px solid rgba(182,138,78,0.25);
+  font-size: var(--step-1);
+}
+.compare-table th {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+.compare-table td:first-child { font-family: var(--font-display); font-size: var(--step-2); color: var(--emerald-deep); }

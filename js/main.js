@@ -35,7 +35,7 @@ async function applySettings() {
 async function applyPricing() {
   const pricing = await loadJSON('/content/pricing.json');
   if (!pricing) return;
-  const map = { minimalist: 'price-minimalist', standard: 'price-standard', custom: 'price-custom' };
+  const map = { minimalistic: 'price-minimalistic', classicCinematic: 'price-classic-cinematic', filmyEdition: 'price-filmy-edition' };
   Object.entries(map).forEach(([key, id]) => {
     const data = pricing[key];
     if (!data) return;
@@ -62,12 +62,40 @@ async function applyPricing() {
   });
 }
 
+// ---- Portfolio tabs (Minimalistic / Classic Cinematic / Filmy Edition) ----
+function initPortfolioTabs() {
+  const tabButtons = document.querySelectorAll('.portfolio-tab-btn');
+  const panels = document.querySelectorAll('.portfolio-tab-panel');
+  if (tabButtons.length === 0) return;
+
+  function activate(tabId) {
+    tabButtons.forEach((btn) => {
+      const isMatch = btn.dataset.tab === tabId;
+      btn.classList.toggle('active', isMatch);
+    });
+    panels.forEach((panel) => {
+      panel.classList.toggle('active', panel.id === tabId);
+    });
+  }
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activate(btn.dataset.tab);
+      history.replaceState(null, '', `#${btn.dataset.tab}`);
+    });
+  });
+
+  const initial = window.location.hash.replace('#', '');
+  const validInitial = Array.from(panels).some((p) => p.id === initial);
+  activate(validInitial ? initial : panels[0].id);
+}
+
 async function applyTestimonials() {
   const container = document.getElementById('testimonialsContainer');
   if (!container) return;
   const data = await loadJSON('/content/testimonials/index.json');
   const items = data && Array.isArray(data.items) ? data.items : [];
-  if (items.length === 0) return;
+  if (items.length === 0) return; // keep static placeholder markup
   container.innerHTML = items.map((t) => `
     <div class="quote-card">
       <p class="quote-text">"${t.quote}"</p>
@@ -81,7 +109,7 @@ async function applyGallery() {
   if (!container) return;
   const data = await loadJSON('/content/gallery/index.json');
   const items = data && Array.isArray(data.items) ? data.items : [];
-  if (items.length === 0) return;
+  if (items.length === 0) return; // keep static placeholder markup
   container.innerHTML = items.map((g) => `
     <div class="gallery-item" style="background-image:url('${g.image}'); background-size:cover; background-position:center;">
       ${g.caption ? `<span style="background:rgba(0,0,0,0.4); padding:0.3em 0.6em; font-size:0.8rem;">${g.caption}</span>` : ''}
@@ -94,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
   applyPricing();
   applyTestimonials();
   applyGallery();
+  initPortfolioTabs();
 
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
@@ -104,6 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Simple in-memory cart shared across the page (resets on navigation —
+  // placeholder behaviour until real checkout/session logic is added).
   window.riyaCart = window.riyaCart || [];
 
   document.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
@@ -117,6 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Basic client-side validation feedback for the inquiry form (no backend
+  // wired yet — connect to Netlify Forms or a serverless function next).
   const form = document.getElementById('inquiryForm');
   if (form) {
     form.addEventListener('submit', (e) => {

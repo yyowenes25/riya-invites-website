@@ -23,22 +23,22 @@ collections:
         label: "Invitation Packages"
         name: "pricing"
         fields:
-          - label: "Minimalist Elegant"
-            name: "minimalist"
+          - label: "Minimalistic"
+            name: "minimalistic"
             widget: "object"
             fields:
               - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
               - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
-          - label: "Standard Couple Edition"
-            name: "standard"
+          - label: "Classic Cinematic"
+            name: "classicCinematic"
             widget: "object"
             fields:
               - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
               - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
-          - label: "Full Custom Storyline"
-            name: "custom"
+          - label: "Filmy Edition"
+            name: "filmyEdition"
             widget: "object"
             fields:
               - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
