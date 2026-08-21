@@ -16,7 +16,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="invitations.html">Invitations</a></li>
       <li><a href="gifts.html" aria-current="page">Gifts</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="portfolio.html">Collections</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -31,59 +31,18 @@
   <div class="wrap">
     <span class="eyebrow on-dark">Beyond the Wedding</span>
     <h1 class="on-dark" style="font-size: var(--step-5);">Gifts for the Story After</h1>
-    <p class="lede on-dark">Anniversaries, Valentine's Day, and everyday reasons to celebrate — personalised keepsakes made with the same care as your invitation film.</p>
+    <p class="lede on-dark">Anniversaries, Valentine's Day, and everyday reasons to celebrate — personalised keepsakes made with the same care as your digital invites.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="product-grid">
-
-      <div class="product-card">
-        <div class="product-media">
-          <p class="placeholder-label">Product image<br>placeholder</p>
-        </div>
-        <div class="product-body">
-          <h3>Anniversary Gifts</h3>
-          <p class="product-price" data-price-id="price-gift-anniversary">RM—</p>
-          <div class="product-foot">
-            <a href="contact.html" class="btn-ghost">Enquire</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-media">
-          <p class="placeholder-label">Product image<br>placeholder</p>
-        </div>
-        <div class="product-body">
-          <h3>Valentine's Gifts</h3>
-          <p class="product-price" data-price-id="price-gift-valentines">RM—</p>
-          <div class="product-foot">
-            <a href="contact.html" class="btn-ghost">Enquire</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card">
-        <div class="product-media">
-          <p class="placeholder-label">Product image<br>placeholder</p>
-        </div>
-        <div class="product-body">
-          <h3>Custom Couple Art</h3>
-          <p class="product-price" data-price-id="price-gift-coupleart">RM—</p>
-          <div class="product-foot">
-            <a href="contact.html" class="btn-ghost">Enquire</a>
-          </div>
-        </div>
-      </div>
-
+    <div id="giftsEmptyState" class="form-card text-center" style="display:none;">
+      <p class="lede" style="margin-inline:auto;">New gifts are on the way — check back soon, or send an inquiry for something custom.</p>
+      <a href="contact.html" class="btn btn-outline mt-2">Send an Inquiry</a>
     </div>
 
-    <div class="form-card mt-3 text-center">
-      <p class="lede" style="margin-inline:auto;">Gift pricing is still being finalised — send an inquiry and we'll get back to you with options and cost.</p>
-      <a href="contact.html" class="btn btn-primary mt-2">Send an Inquiry</a>
-    </div>
+    <div class="product-grid" id="giftsGrid" style="grid-template-columns: repeat(3, 1fr);"></div>
   </div>
 </section>
 
@@ -97,7 +56,7 @@
       <div class="footer-col"><h4>Shop</h4><ul>
         <li><a href="invitations.html">Invitations</a></li>
         <li><a href="gifts.html">Gifts</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="portfolio.html">Collections</a></li>
       </ul></div>
       <div class="footer-col"><h4>Studio</h4><ul>
         <li><a href="about.html">About</a></li>

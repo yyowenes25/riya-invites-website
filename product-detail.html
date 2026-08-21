@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Product — Riya Invites</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <a href="index.html" class="logo">Riya <em>Invites</em></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="invitations.html">Invitations</a></li>
+      <li><a href="gifts.html">Gifts</a></li>
+      <li><a href="portfolio.html">Collections</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon" aria-label="Cart">&#9862;<span class="cart-count" id="cartCount">0</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </nav>
+</header>
+
+<section>
+  <div class="wrap">
+    <a href="gifts.html" class="btn-ghost mb-3" style="display:inline-block;">&larr; Back to Gifts</a>
+
+    <div id="productNotFound" style="display:none;" class="form-card text-center">
+      <p class="lede" style="margin-inline:auto;">This product couldn't be found.</p>
+      <a href="gifts.html" class="btn btn-outline mt-2">Back to Gifts</a>
+    </div>
+
+    <div id="productDetailWrap" class="product-detail-grid" style="display:none;">
+      <div class="product-detail-media" id="productImage">
+        <p class="placeholder-label">Product image<br>placeholder</p>
+      </div>
+      <div>
+        <h1 id="productTitle" style="font-size: var(--step-5);"></h1>
+        <p class="product-detail-price" id="productPrice"></p>
+        <p class="product-detail-desc" id="productDescription"></p>
+        <div class="qty-row">
+          <label for="qtySelect">Quantity</label>
+          <select id="qtySelect"></select>
+        </div>
+        <button id="addToCartBtn" class="btn btn-primary">Add to Cart</button>
+        <p id="addedMsg" style="display:none; margin-top:1rem; color: var(--maroon); font-weight:600;">Added to cart ✓</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>&copy; 2026 Riya Invites. All rights reserved.</span>
+      <span>Made in Malaysia</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'), 10);
+    const products = await loadGiftProducts();
+    const product = products[id];
+
+    if (!product || !product.title || product.title.trim() === '') {
+      document.getElementById('productNotFound').style.display = 'block';
+      return;
+    }
+
+    document.getElementById('productDetailWrap').style.display = 'grid';
+    document.getElementById('pageTitle').textContent = `${product.title} — Riya Invites`;
+    document.getElementById('productTitle').textContent = product.title;
+    document.getElementById('productPrice').textContent = product.price ? `RM${product.price}` : 'RM—';
+    document.getElementById('productDescription').textContent = product.description || '';
+
+    if (product.image) {
+      const imgEl = document.getElementById('productImage');
+      imgEl.style.backgroundImage = `url('${product.image}')`;
+      imgEl.style.backgroundSize = 'cover';
+      imgEl.style.backgroundPosition = 'center';
+      imgEl.innerHTML = '';
+    }
+
+    const maxQty = product.maxQuantity && product.maxQuantity > 0 ? product.maxQuantity : 10;
+    const qtySelect = document.getElementById('qtySelect');
+    for (let i = 1; i <= maxQty; i++) {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = i;
+      qtySelect.appendChild(opt);
+    }
+
+    document.getElementById('addToCartBtn').addEventListener('click', () => {
+      const qty = parseInt(qtySelect.value, 10) || 1;
+      addToCart(product.title, product.price || 0, qty);
+      const msg = document.getElementById('addedMsg');
+      msg.style.display = 'block';
+      setTimeout(() => { msg.style.display = 'none'; }, 2000);
+    });
+  });
+</script>
+</body>
+</html>

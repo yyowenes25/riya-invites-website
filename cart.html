@@ -15,7 +15,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="invitations.html">Invitations</a></li>
       <li><a href="gifts.html">Gifts</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="portfolio.html">Collections</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -31,24 +31,23 @@
     <span class="eyebrow">Checkout</span>
     <h1 class="mb-2" style="font-size: var(--step-5);">Your Cart</h1>
 
-    <div class="form-card">
-      <p style="color: var(--ink-soft);">
-        This is a placeholder cart view. Items added from the Invitations page appear here for this session.
-        In production, this page will connect to <strong>Stripe Checkout</strong> so customers can pay securely,
-        directly on this page — no manual invoicing needed.
-      </p>
-      <div class="text-center mt-3">
-        <a href="invitations.html" class="btn btn-outline">Continue Browsing</a>
-      </div>
+    <div id="cartEmptyState" class="form-card text-center" style="display:none;">
+      <p class="lede" style="margin-inline:auto;">Your cart is empty.</p>
+      <a href="invitations.html" class="btn btn-outline mt-2">Browse Invitations</a>
     </div>
 
-    <div class="form-card mt-2">
-      <h3 style="font-size: var(--step-3); margin-bottom: 0.8rem;">Next step for the developer</h3>
-      <p style="color: var(--ink-soft); font-size: var(--step-1);">
-        Wire this page to a Stripe Checkout Session via a Netlify serverless function
-        (<code>/netlify/functions/create-checkout-session</code>), passing the selected package's price ID.
-        On success, redirect to a confirmation page; on cancel, return here.
-      </p>
+    <div id="cartItemsWrap">
+      <div id="cartItemsList"></div>
+
+      <div class="form-card mt-2">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.2rem;">
+          <span style="font-family: var(--font-body); font-weight:600; text-transform:uppercase; letter-spacing:0.04em; font-size: var(--step-1); color: var(--ink-soft);">Subtotal</span>
+          <span id="cartSubtotal" style="font-family: var(--font-display); font-size: var(--step-4); color: var(--maroon);">RM0</span>
+        </div>
+        <button id="checkoutBtn" class="btn btn-primary" style="width:100%; justify-content:center;">Proceed to Secure Checkout</button>
+        <p id="checkoutStatus" style="display:none; margin-top:1rem; font-size: var(--step-1); color: var(--maroon); text-align:center;"></p>
+        <p style="margin-top:1rem; font-size: 0.8rem; color: var(--ink-soft); text-align:center;">Payments are processed securely by Stripe. Riya Invites never sees or stores your card details.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -63,5 +62,81 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+  function renderCart() {
+    const cart = getCart();
+    const listEl = document.getElementById('cartItemsList');
+    const emptyEl = document.getElementById('cartEmptyState');
+    const itemsWrap = document.getElementById('cartItemsWrap');
+    const subtotalEl = document.getElementById('cartSubtotal');
+
+    if (cart.length === 0) {
+      emptyEl.style.display = 'block';
+      itemsWrap.style.display = 'none';
+      return;
+    }
+    emptyEl.style.display = 'none';
+    itemsWrap.style.display = 'block';
+
+    let subtotal = 0;
+    listEl.innerHTML = cart.map((item, i) => {
+      subtotal += item.price * item.qty;
+      return `
+        <div class="form-card mt-1" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+          <div>
+            <p style="font-family: var(--font-display); font-size: var(--step-3); color: var(--emerald-deep);">${item.name}</p>
+            <p style="font-size: var(--step-1); color: var(--ink-soft);">Qty: ${item.qty} &middot; RM${item.price} each</p>
+          </div>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <span style="font-family: var(--font-display); font-size: var(--step-3); color: var(--maroon);">RM${item.price * item.qty}</span>
+            <button data-remove-index="${i}" class="btn-ghost" style="border:none; color:var(--ink-soft);">Remove</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    subtotalEl.textContent = `RM${subtotal}`;
+
+    listEl.querySelectorAll('[data-remove-index]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        removeFromCart(parseInt(btn.dataset.removeIndex, 10));
+        renderCart();
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderCart();
+
+    document.getElementById('checkoutBtn').addEventListener('click', async () => {
+      const cart = getCart();
+      const statusEl = document.getElementById('checkoutStatus');
+      const btn = document.getElementById('checkoutBtn');
+      if (cart.length === 0) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Redirecting to secure checkout…';
+      statusEl.style.display = 'none';
+
+      try {
+        const res = await fetch('/.netlify/functions/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: cart }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.url) {
+          throw new Error(data.error || 'Something went wrong starting checkout.');
+        }
+        window.location.href = data.url;
+      } catch (err) {
+        statusEl.textContent = err.message || 'Could not start checkout. Please try again.';
+        statusEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Proceed to Secure Checkout';
+      }
+    });
+  });
+</script>
 </body>
 </html>

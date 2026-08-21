@@ -15,6 +15,7 @@ collections:
         fields:
           - { label: "Logo Image", name: "logoUrl", widget: "image", required: false, hint: "Upload your logo. If left empty, the text logo 'Riya Invites' is used." }
           - { label: "Tagline (shown under logo area on some pages)", name: "tagline", widget: "string", required: false }
+          - { label: "Hero Background Images (homepage)", name: "heroImages", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false, hint: "Add one or more images. With more than one, they'll auto-rotate as a slideshow." }
 
   - name: "pricing"
     label: "Invitation Pricing"
@@ -45,28 +46,31 @@ collections:
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
               - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
 
-  - name: "giftPricing"
-    label: "Gift Pricing"
+  - name: "gifts"
+    label: "Gift Products"
     files:
-      - file: "content/giftPricing.json"
-        label: "Gift Prices"
-        name: "giftPricing"
+      - file: "content/gifts/index.json"
+        label: "Gift Products Catalog"
+        name: "gifts"
         fields:
-          - label: "Anniversary Gifts"
-            name: "anniversary"
-            widget: "object"
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            hint: "Leave 'Title' blank on any slot to keep it hidden from the live site. Add more slots any time with the Add button."
             fields:
-              - { label: "Price (RM) — leave blank to show 'RM—'", name: "price", widget: "number", value_type: "int", required: false }
-          - label: "Valentine's Gifts"
-            name: "valentines"
-            widget: "object"
-            fields:
-              - { label: "Price (RM) — leave blank to show 'RM—'", name: "price", widget: "number", value_type: "int", required: false }
-          - label: "Custom Couple Art"
-            name: "coupleArt"
-            widget: "object"
-            fields:
-              - { label: "Price (RM) — leave blank to show 'RM—'", name: "price", widget: "number", value_type: "int", required: false }
+              - { label: "Title (leave blank to hide this product)", name: "title", widget: "string", required: false }
+              - { label: "Price (RM)", name: "price", widget: "number", value_type: "int", required: false }
+              - { label: "Main Image", name: "image", widget: "image", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Max Quantity Buyer Can Select", name: "maxQuantity", widget: "number", value_type: "int", default: 10, required: false }
+              - label: "Category (controls which Collections tab it appears in)"
+                name: "category"
+                widget: "select"
+                required: false
+                options:
+                  - "Wedding & Engagement Favors"
+                  - "Custom Welcome Board"
+                  - "Gifts for Loved Ones"
 
   - name: "testimonials"
     label: "Testimonials"
@@ -95,19 +99,3 @@ collections:
             fields:
               - { label: "Image", name: "image", widget: "image" }
               - { label: "Caption", name: "caption", widget: "string", required: false }
-
-  - name: "gifts"
-    label: "Gift Products"
-    files:
-      - file: "content/gifts/index.json"
-        label: "Gift Products List"
-        name: "gifts"
-        fields:
-          - label: "Products"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Starting Price (RM)", name: "price", widget: "number", value_type: "int", required: false }
-              - { label: "Image", name: "image", widget: "image", required: false }
-              - { label: "Description", name: "description", widget: "text", required: false }

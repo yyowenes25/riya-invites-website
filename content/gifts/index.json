@@ -1,0 +1,19 @@
+{
+  "products": [
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
+    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" }
+  ]
+}

@@ -62,44 +62,137 @@ async function applyPricing() {
   });
 }
 
-// ---- Portfolio tabs (Minimalistic / Classic Cinematic / Filmy Edition) ----
+// ---- Portfolio tabs ----
+// Supports multiple independent tab groups on the same page (e.g. invite
+// styles and gift categories both live on the Collections page). Each
+// group is scoped by its shared ancestor with class "tab-group".
 function initPortfolioTabs() {
-  const tabButtons = document.querySelectorAll('.portfolio-tab-btn');
-  const panels = document.querySelectorAll('.portfolio-tab-panel');
-  if (tabButtons.length === 0) return;
+  const groups = document.querySelectorAll('.tab-group');
+  const scopes = groups.length > 0 ? groups : [document]; // fall back to whole page if no groups wrap tabs
 
-  function activate(tabId) {
+  scopes.forEach((scope) => {
+    const tabButtons = scope.querySelectorAll('.portfolio-tab-btn');
+    const panels = scope.querySelectorAll('.portfolio-tab-panel');
+    if (tabButtons.length === 0) return;
+
+    function activate(tabId) {
+      tabButtons.forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.tab === tabId);
+      });
+      panels.forEach((panel) => {
+        panel.classList.toggle('active', panel.id === tabId);
+      });
+    }
+
     tabButtons.forEach((btn) => {
-      const isMatch = btn.dataset.tab === tabId;
-      btn.classList.toggle('active', isMatch);
+      btn.addEventListener('click', () => {
+        activate(btn.dataset.tab);
+        history.replaceState(null, '', `#${btn.dataset.tab}`);
+      });
     });
-    panels.forEach((panel) => {
-      panel.classList.toggle('active', panel.id === tabId);
-    });
-  }
 
-  tabButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      activate(btn.dataset.tab);
-      history.replaceState(null, '', `#${btn.dataset.tab}`);
-    });
+    const initial = window.location.hash.replace('#', '');
+    const validInitial = Array.from(panels).some((p) => p.id === initial);
+    activate(validInitial ? initial : panels[0].id);
   });
-
-  const initial = window.location.hash.replace('#', '');
-  const validInitial = Array.from(panels).some((p) => p.id === initial);
-  activate(validInitial ? initial : panels[0].id);
 }
 
-async function applyGiftPricing() {
-  const giftPricing = await loadJSON('/content/giftPricing.json');
-  if (!giftPricing) return;
-  const map = { anniversary: 'price-gift-anniversary', valentines: 'price-gift-valentines', coupleArt: 'price-gift-coupleart' };
-  Object.entries(map).forEach(([key, id]) => {
-    const data = giftPricing[key];
-    if (!data) return;
-    document.querySelectorAll(`[data-price-id="${id}"]`).forEach((el) => {
-      el.textContent = data.price ? `RM${data.price}` : 'RM—';
-    });
+// ---- Hero slideshow (homepage only) ----
+// Reads settings.heroImages (an array of image paths from the CMS). If none
+// are set yet, shows a placeholder. If more than one, auto-rotates.
+async function applyHeroSlideshow() {
+  const container = document.getElementById('heroSlides');
+  if (!container) return;
+  const settings = await loadJSON('/content/settings.json');
+  const images = settings && Array.isArray(settings.heroImages) ? settings.heroImages.filter(Boolean) : [];
+
+  if (images.length === 0) {
+    container.innerHTML = `<div class="hero-slide-placeholder"><p>Hero background image placeholder<br>(add via Site Settings → Hero Background Images)</p></div>`;
+    return;
+  }
+
+  container.innerHTML = images.map((src, i) => `
+    <div class="hero-slide${i === 0 ? ' active' : ''}" style="background-image:url('${src}');"></div>
+  `).join('');
+
+  if (images.length > 1) {
+    let current = 0;
+    const slides = container.querySelectorAll('.hero-slide');
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 5000);
+  }
+}
+
+// ---- Gift products (dynamic 15-slot catalog, editable via CMS) ----
+async function loadGiftProducts() {
+  const data = await loadJSON('/content/gifts/index.json');
+  return data && Array.isArray(data.products) ? data.products : [];
+}
+
+function giftProductCardHTML(product, index) {
+  const bg = product.image ? `style="background-image:url('${product.image}');"` : '';
+  return `
+    <div class="gift-product-card">
+      <div class="gift-product-media" ${bg}>
+        ${product.image ? '' : '<p class="placeholder-label">Product image<br>placeholder</p>'}
+      </div>
+      <div class="gift-product-body">
+        <h3>${product.title}</h3>
+        <p class="price">${product.price ? 'RM' + product.price : 'RM—'}</p>
+        <a href="product-detail.html?id=${index}" class="btn btn-outline">Shop Now</a>
+      </div>
+    </div>
+  `;
+}
+
+async function applyGiftsGrid() {
+  const container = document.getElementById('giftsGrid');
+  const emptyState = document.getElementById('giftsEmptyState');
+  if (!container) return;
+  const products = await loadGiftProducts();
+  const visible = products
+    .map((p, i) => ({ ...p, _index: i }))
+    .filter((p) => p.title && p.title.trim() !== '');
+
+  if (visible.length === 0) {
+    if (emptyState) emptyState.style.display = 'block';
+    container.innerHTML = '';
+    return;
+  }
+  if (emptyState) emptyState.style.display = 'none';
+  container.innerHTML = visible.map((p) => giftProductCardHTML(p, p._index)).join('');
+}
+
+// Populates the 3 gift-category tabs on the Collections page, filtering the
+// same product catalog by category so it stays in sync with the Gifts page.
+async function applyGiftCollectionTabs() {
+  const categoryMap = {
+    'favors-tab': 'Wedding & Engagement Favors',
+    'welcome-board-tab': 'Custom Welcome Board',
+    'loved-ones-tab': 'Gifts for Loved Ones',
+  };
+  const anyContainer = document.getElementById('favors-tab');
+  if (!anyContainer) return;
+
+  const products = await loadGiftProducts();
+  const withIndex = products.map((p, i) => ({ ...p, _index: i })).filter((p) => p.title && p.title.trim() !== '');
+
+  Object.entries(categoryMap).forEach(([panelId, categoryName]) => {
+    const panel = document.getElementById(panelId);
+    if (!panel) return;
+    const grid = panel.querySelector('.gift-category-grid');
+    const empty = panel.querySelector('.gift-category-empty');
+    const matches = withIndex.filter((p) => p.category === categoryName);
+    if (matches.length === 0) {
+      if (grid) grid.innerHTML = '';
+      if (empty) empty.style.display = 'block';
+      return;
+    }
+    if (empty) empty.style.display = 'none';
+    if (grid) grid.innerHTML = matches.map((p) => giftProductCardHTML(p, p._index)).join('');
   });
 }
 
@@ -130,13 +223,71 @@ async function applyGallery() {
   `).join('');
 }
 
+// ---- Cart (persisted in localStorage so it survives page navigation) ----
+// This is a real static multi-page site, so cart state must be saved to the
+// browser's storage — an in-memory JS variable would reset on every page load.
+const CART_KEY = 'riyaCart';
+
+function getCart() {
+  try {
+    const raw = localStorage.getItem(CART_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  updateCartCountBadge();
+}
+
+function addToCart(name, price, qty = 1) {
+  const cart = getCart();
+  const existing = cart.find((i) => i.name === name && i.price === price);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ name, price, qty });
+  }
+  saveCart(cart);
+}
+
+function removeFromCart(index) {
+  const cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+}
+
+function updateCartCountBadge() {
+  const countEl = document.getElementById('cartCount');
+  if (!countEl) return;
+  const total = getCart().reduce((sum, i) => sum + i.qty, 0);
+  countEl.textContent = total;
+}
+
+// Reads the live, currently-displayed price from the product card this
+// button belongs to — so checkout always matches whatever price is showing
+// on screen, even if it was changed via the CMS.
+function getLivePriceFromButton(btn) {
+  const card = btn.closest('.product-card') || btn.closest('.portfolio-item-card');
+  if (!card) return null;
+  const priceEl = card.querySelector('.product-price') || card.querySelector('.price');
+  if (!priceEl) return null;
+  const match = priceEl.textContent.replace(/,/g, '').match(/(\d+(\.\d+)?)/);
+  return match ? parseFloat(match[1]) : null;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   applySettings();
   applyPricing();
-  applyGiftPricing();
+  applyHeroSlideshow();
+  applyGiftsGrid();
+  applyGiftCollectionTabs();
   applyTestimonials();
   applyGallery();
   initPortfolioTabs();
+  updateCartCountBadge();
 
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
@@ -147,16 +298,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Simple in-memory cart shared across the page (resets on navigation —
-  // placeholder behaviour until real checkout/session logic is added).
-  window.riyaCart = window.riyaCart || [];
-
   document.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const name = btn.dataset.name || 'Item';
-      window.riyaCart.push(name);
-      const countEl = document.getElementById('cartCount');
-      if (countEl) countEl.textContent = window.riyaCart.length;
+      const name = (btn.dataset.name || 'Item').replace(/\s*\(RM[\d,.]+\)\s*/, '').trim();
+      const price = getLivePriceFromButton(btn) || parseFloat((btn.dataset.name || '').match(/RM([\d,.]+)/)?.[1]?.replace(/,/g, '')) || 0;
+      addToCart(name, price);
       btn.textContent = 'Added ✓';
       setTimeout(() => { btn.textContent = btn.dataset.label || 'Add to Cart'; }, 1400);
     });

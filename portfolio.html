@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Riya Invites</title>
-<meta name="description" content="Sample cinematic wedding invitation films and gift work from Riya Invites.">
+<title>Collections — Riya Invites</title>
+<meta name="description" content="Browse invitation styles and gift collections from Riya Invites.">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
       <li><a href="index.html">Home</a></li>
       <li><a href="invitations.html">Invitations</a></li>
       <li><a href="gifts.html">Gifts</a></li>
-      <li><a href="portfolio.html" aria-current="page">Portfolio</a></li>
+      <li><a href="portfolio.html" aria-current="page">Collections</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -30,13 +30,18 @@
 <section class="hero" style="padding-block: clamp(3rem,6vw,4.5rem);">
   <div class="wrap">
     <span class="eyebrow on-dark">A Look Inside</span>
-    <h1 class="on-dark" style="font-size: var(--step-5);">Portfolio</h1>
-    <p class="lede on-dark">A growing collection of invitation films and gift work. Real samples will be added here as they're ready.</p>
+    <h1 class="on-dark" style="font-size: var(--step-5);">Collections</h1>
+    <p class="lede on-dark">Browse by style, then shop the exact piece that fits your story.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Invitations</span>
+      <h2>By Style</h2>
+    </div>
+    <div class="tab-group">
     <div class="portfolio-tabs">
       <button class="portfolio-tab-btn" data-tab="minimalistic">Minimalistic</button>
       <button class="portfolio-tab-btn" data-tab="classic-cinematic">Classic Cinematic</button>
@@ -120,10 +125,45 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 </section>
 
-<section class="section-ivory-soft text-center">
+<svg class="kolam-divider" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true"><use href="#kolam-strip-motif"/></svg>
+
+<section class="section-ivory-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Gifts</span>
+      <h2>By Category</h2>
+      <p class="lede">Products shown here are pulled directly from your Gifts catalog — add or edit them once via the CMS, and they'll appear both here and on the Gifts page.</p>
+    </div>
+    <div class="tab-group">
+    <div class="portfolio-tabs">
+      <button class="portfolio-tab-btn" data-tab="favors-tab">Wedding & Engagement Favors</button>
+      <button class="portfolio-tab-btn" data-tab="welcome-board-tab">Custom Welcome Board</button>
+      <button class="portfolio-tab-btn" data-tab="loved-ones-tab">Gifts for Loved Ones</button>
+    </div>
+
+    <div class="portfolio-tab-panel" id="favors-tab">
+      <p class="gift-category-empty lede" style="display:none;">No products added to this category yet.</p>
+      <div class="product-grid gift-category-grid" style="grid-template-columns: repeat(3, 1fr);"></div>
+    </div>
+
+    <div class="portfolio-tab-panel" id="welcome-board-tab">
+      <p class="gift-category-empty lede" style="display:none;">No products added to this category yet.</p>
+      <div class="product-grid gift-category-grid" style="grid-template-columns: repeat(3, 1fr);"></div>
+    </div>
+
+    <div class="portfolio-tab-panel" id="loved-ones-tab">
+      <p class="gift-category-empty lede" style="display:none;">No products added to this category yet.</p>
+      <div class="product-grid gift-category-grid" style="grid-template-columns: repeat(3, 1fr);"></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="text-center">
   <div class="wrap">
     <span class="eyebrow">Like what you see?</span>
     <h2 class="mb-2">Let's make yours next</h2>
@@ -141,7 +181,7 @@
       <div class="footer-col"><h4>Shop</h4><ul>
         <li><a href="invitations.html">Invitations</a></li>
         <li><a href="gifts.html">Gifts</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="portfolio.html">Collections</a></li>
       </ul></div>
       <div class="footer-col"><h4>Studio</h4><ul>
         <li><a href="about.html">About</a></li>
@@ -159,6 +199,21 @@
     </div>
   </div>
 </footer>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="kolam-strip-motif">
+      <path d="M0 14 Q30 -6 60 14 T120 14 T180 14 T240 14 T300 14 T360 14 T420 14 T480 14 T540 14 T600 14 T660 14 T720 14 T780 14 T840 14 T900 14 T960 14 T1020 14 T1080 14 T1140 14 T1200 14" />
+      <circle cx="0" cy="14" r="2.2"/><circle cx="60" cy="14" r="2.2"/><circle cx="120" cy="14" r="2.2"/>
+      <circle cx="180" cy="14" r="2.2"/><circle cx="240" cy="14" r="2.2"/><circle cx="300" cy="14" r="2.2"/>
+      <circle cx="360" cy="14" r="2.2"/><circle cx="420" cy="14" r="2.2"/><circle cx="480" cy="14" r="2.2"/>
+      <circle cx="540" cy="14" r="2.2"/><circle cx="600" cy="14" r="2.2"/><circle cx="660" cy="14" r="2.2"/>
+      <circle cx="720" cy="14" r="2.2"/><circle cx="780" cy="14" r="2.2"/><circle cx="840" cy="14" r="2.2"/>
+      <circle cx="900" cy="14" r="2.2"/><circle cx="960" cy="14" r="2.2"/><circle cx="1020" cy="14" r="2.2"/>
+      <circle cx="1080" cy="14" r="2.2"/><circle cx="1140" cy="14" r="2.2"/><circle cx="1200" cy="14" r="2.2"/>
+    </g>
+  </defs>
+</svg>
 
 <script src="js/main.js"></script>
 </body>

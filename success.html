@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — Riya Invites</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <a href="index.html" class="logo">Riya <em>Invites</em></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="invitations.html">Invitations</a></li>
+      <li><a href="gifts.html">Gifts</a></li>
+      <li><a href="portfolio.html">Collections</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-icon" aria-label="Cart">&#9862;<span class="cart-count" id="cartCount">0</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </nav>
+</header>
+
+<section class="text-center">
+  <div class="wrap" style="max-width: 640px;">
+    <span class="eyebrow">Thank You</span>
+    <h1 class="mb-2" style="font-size: var(--step-5);">Your order is confirmed</h1>
+    <p class="lede mb-3" style="margin-inline:auto;">We've received your payment and your order. We'll be in touch shortly to collect any remaining details (names, photos, event dates, delivery address) needed to bring your piece to life.</p>
+    <a href="index.html" class="btn btn-primary">Back to Home</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>&copy; 2026 Riya Invites. All rights reserved.</span>
+      <span>Made in Malaysia</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  // Clear the cart now that the order is placed.
+  document.addEventListener('DOMContentLoaded', () => {
+    localStorage.removeItem('riyaCart');
+    updateCartCountBadge();
+  });
+</script>
+</body>
+</html>
