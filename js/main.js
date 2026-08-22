@@ -30,6 +30,17 @@ async function applySettings() {
     const heroTag = document.getElementById('heroTagline');
     if (heroTag) heroTag.textContent = settings.tagline;
   }
+  const iconMap = { icon1: 'icon-why-1', icon2: 'icon-why-2', icon3: 'icon-why-3' };
+  ['whyIcon1', 'whyIcon2', 'whyIcon3'].forEach((key, i) => {
+    if (!settings[key]) return;
+    const el = document.getElementById(`icon-why-${i + 1}`);
+    if (el) {
+      el.style.backgroundImage = `url('${settings[key]}')`;
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      el.textContent = '';
+    }
+  });
 }
 
 async function applyPricing() {
@@ -134,6 +145,12 @@ async function loadGiftProducts() {
 
 function giftProductCardHTML(product, index) {
   const bg = product.image ? `style="background-image:url('${product.image}');"` : '';
+  const tiers = Array.isArray(product.tiers) ? product.tiers.filter((t) => t.price != null && t.price > 0) : [];
+  let priceLabel = 'RM—';
+  if (tiers.length > 0) {
+    const lowest = Math.min(...tiers.map((t) => t.price));
+    priceLabel = `From RM${lowest}`;
+  }
   return `
     <div class="gift-product-card">
       <div class="gift-product-media" ${bg}>
@@ -141,7 +158,7 @@ function giftProductCardHTML(product, index) {
       </div>
       <div class="gift-product-body">
         <h3>${product.title}</h3>
-        <p class="price">${product.price ? 'RM' + product.price : 'RM—'}</p>
+        <p class="price">${priceLabel}</p>
         <a href="product-detail.html?id=${index}" class="btn btn-outline">Shop Now</a>
       </div>
     </div>

@@ -16,6 +16,9 @@ collections:
           - { label: "Logo Image", name: "logoUrl", widget: "image", required: false, hint: "Upload your logo. If left empty, the text logo 'Riya Invites' is used." }
           - { label: "Tagline (shown under logo area on some pages)", name: "tagline", widget: "string", required: false }
           - { label: "Hero Background Images (homepage)", name: "heroImages", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false, hint: "Add one or more images. With more than one, they'll auto-rotate as a slideshow." }
+          - { label: "'Why Riya Invites' Icon 1 (A story, not a template)", name: "whyIcon1", widget: "image", required: false }
+          - { label: "'Why Riya Invites' Icon 2 (Tamil, done properly)", name: "whyIcon2", widget: "image", required: false }
+          - { label: "'Why Riya Invites' Icon 3 (Ready to share, fast)", name: "whyIcon3", widget: "image", required: false }
 
   - name: "pricing"
     label: "Invitation Pricing"
@@ -59,10 +62,21 @@ collections:
             hint: "Leave 'Title' blank on any slot to keep it hidden from the live site. Add more slots any time with the Add button."
             fields:
               - { label: "Title (leave blank to hide this product)", name: "title", widget: "string", required: false }
-              - { label: "Price (RM)", name: "price", widget: "number", value_type: "int", required: false }
               - { label: "Main Image", name: "image", widget: "image", required: false }
               - { label: "Description", name: "description", widget: "text", required: false }
-              - { label: "Max Quantity Buyer Can Select", name: "maxQuantity", widget: "number", value_type: "int", default: 10, required: false }
+              - { label: "Unit Label (e.g. Set, Pack, Pieces)", name: "unitLabel", widget: "string", default: "Set", required: false, hint: "This word is shown to customers, e.g. 'Set Of' or 'Pack Of'." }
+              - label: "Quantity Tiers (each with its own price)"
+                name: "tiers"
+                widget: "list"
+                default:
+                  - { quantity: 20, price: null }
+                  - { quantity: 50, price: null }
+                  - { quantity: 75, price: null }
+                  - { quantity: 100, price: null }
+                  - { quantity: 200, price: null }
+                fields:
+                  - { label: "Quantity", name: "quantity", widget: "number", value_type: "int" }
+                  - { label: "Price (RM)", name: "price", widget: "number", value_type: "int", required: false, hint: "Leave blank to hide this tier until priced." }
               - label: "Category (controls which Collections tab it appears in)"
                 name: "category"
                 widget: "select"

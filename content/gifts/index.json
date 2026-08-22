@@ -1,19 +1,439 @@
 {
   "products": [
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" },
-    { "title": "", "price": null, "image": "", "description": "", "maxQuantity": 10, "category": "" }
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    },
+    {
+      "title": "",
+      "image": "",
+      "description": "",
+      "unitLabel": "Set",
+      "tiers": [
+        {
+          "quantity": 20,
+          "price": null
+        },
+        {
+          "quantity": 50,
+          "price": null
+        },
+        {
+          "quantity": 75,
+          "price": null
+        },
+        {
+          "quantity": 100,
+          "price": null
+        },
+        {
+          "quantity": 200,
+          "price": null
+        }
+      ],
+      "category": ""
+    }
   ]
 }

@@ -44,9 +44,10 @@
         <p class="product-detail-price" id="productPrice"></p>
         <p class="product-detail-desc" id="productDescription"></p>
         <div class="qty-row">
-          <label for="qtySelect">Quantity</label>
+          <label id="qtyLabel" for="qtySelect">Set Of</label>
           <select id="qtySelect"></select>
         </div>
+        <div id="noTiersMsg" style="display:none; color: var(--ink-soft); font-size: var(--step-1); margin-bottom: 1.6rem;">Pricing options for this product are coming soon — please check back or send an inquiry.</div>
         <button id="addToCartBtn" class="btn btn-primary">Add to Cart</button>
         <p id="addedMsg" style="display:none; margin-top:1rem; color: var(--maroon); font-weight:600;">Added to cart ✓</p>
       </div>
@@ -79,7 +80,6 @@
     document.getElementById('productDetailWrap').style.display = 'grid';
     document.getElementById('pageTitle').textContent = `${product.title} — Riya Invites`;
     document.getElementById('productTitle').textContent = product.title;
-    document.getElementById('productPrice').textContent = product.price ? `RM${product.price}` : 'RM—';
     document.getElementById('productDescription').textContent = product.description || '';
 
     if (product.image) {
@@ -90,18 +90,44 @@
       imgEl.innerHTML = '';
     }
 
-    const maxQty = product.maxQuantity && product.maxQuantity > 0 ? product.maxQuantity : 10;
+    const unitLabel = product.unitLabel || 'Set';
+    document.getElementById('qtyLabel').textContent = `${unitLabel} Of`;
+
+    const tiers = Array.isArray(product.tiers) ? product.tiers.filter((t) => t.price != null && t.price > 0) : [];
+    const priceEl = document.getElementById('productPrice');
     const qtySelect = document.getElementById('qtySelect');
-    for (let i = 1; i <= maxQty; i++) {
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = i;
-      qtySelect.appendChild(opt);
+    const qtyRow = document.querySelector('.qty-row');
+    const addBtn = document.getElementById('addToCartBtn');
+    const noTiersMsg = document.getElementById('noTiersMsg');
+
+    if (tiers.length === 0) {
+      priceEl.textContent = 'RM—';
+      qtyRow.style.display = 'none';
+      noTiersMsg.style.display = 'block';
+      addBtn.style.display = 'none';
+      return;
     }
 
-    document.getElementById('addToCartBtn').addEventListener('click', () => {
-      const qty = parseInt(qtySelect.value, 10) || 1;
-      addToCart(product.title, product.price || 0, qty);
+    tiers.forEach((tier) => {
+      const opt = document.createElement('option');
+      opt.value = tier.quantity;
+      opt.dataset.price = tier.price;
+      opt.textContent = `${tier.quantity} ${unitLabel} (RM${tier.price})`;
+      qtySelect.appendChild(opt);
+    });
+
+    function updatePriceDisplay() {
+      const selected = qtySelect.selectedOptions[0];
+      priceEl.textContent = selected ? `RM${selected.dataset.price}` : 'RM—';
+    }
+    updatePriceDisplay();
+    qtySelect.addEventListener('change', updatePriceDisplay);
+
+    addBtn.addEventListener('click', () => {
+      const selected = qtySelect.selectedOptions[0];
+      const qty = parseInt(selected.value, 10);
+      const price = parseFloat(selected.dataset.price);
+      addToCart(`${product.title} (${qty} ${unitLabel})`, price, 1);
       const msg = document.getElementById('addedMsg');
       msg.style.display = 'block';
       setTimeout(() => { msg.style.display = 'none'; }, 2000);
