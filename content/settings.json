@@ -1,16 +1,16 @@
 {
+  "founderPhoto": "",
   "logoUrl": "/images/uploads/red-simple-girls-club-logo.png",
+  "socialInstagram": "",
+  "socialTiktok": "",
+  "giftsTeaserImage": "/images/uploads/1787420047147.png",
+  "footerDesc": "",
   "tagline": "For Love & Celebrations",
   "whyIcon1": "/images/uploads/black-white-bold-minimal-creative-agency-logo-3-.png",
   "whyIcon2": "/images/uploads/black-white-bold-minimal-creative-agency-logo-2-.png",
-  "whyIcon3": "/images/uploads/black-white-bold-minimal-creative-agency-logo-1-.png",
   "heroImages": [
     "/images/uploads/new-project-88-5b6903b-.png"
   ],
-  "footerDesc": "",
-  "founderPhoto": "",
-  "giftsTeaserImage": "",
-  "socialTiktok": "",
-  "socialInstagram": "",
+  "whyIcon3": "/images/uploads/black-white-bold-minimal-creative-agency-logo-1-.png",
   "socialWhatsapp": ""
 }
