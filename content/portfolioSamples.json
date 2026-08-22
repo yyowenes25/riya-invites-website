@@ -1,0 +1,17 @@
+{
+  "minimalistic": [
+    { "image": "", "video": "" },
+    { "image": "", "video": "" },
+    { "image": "", "video": "" }
+  ],
+  "classicCinematic": [
+    { "image": "", "video": "" },
+    { "image": "", "video": "" },
+    { "image": "", "video": "" }
+  ],
+  "filmyEdition": [
+    { "image": "", "video": "" },
+    { "image": "", "video": "" },
+    { "image": "", "video": "" }
+  ]
+}

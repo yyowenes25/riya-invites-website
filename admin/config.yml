@@ -19,6 +19,12 @@ collections:
           - { label: "'Why Riya Invites' Icon 1 (A story, not a template)", name: "whyIcon1", widget: "image", required: false }
           - { label: "'Why Riya Invites' Icon 2 (Tamil, done properly)", name: "whyIcon2", widget: "image", required: false }
           - { label: "'Why Riya Invites' Icon 3 (Ready to share, fast)", name: "whyIcon3", widget: "image", required: false }
+          - { label: "Footer Description Text", name: "footerDesc", widget: "text", required: false }
+          - { label: "About Page Founder/Studio Photo", name: "founderPhoto", widget: "image", required: false }
+          - { label: "Homepage Gifts Section Photo", name: "giftsTeaserImage", widget: "image", required: false }
+          - { label: "TikTok Link", name: "socialTiktok", widget: "string", required: false }
+          - { label: "Instagram Link", name: "socialInstagram", widget: "string", required: false }
+          - { label: "WhatsApp Link", name: "socialWhatsapp", widget: "string", required: false, hint: "e.g. https://wa.me/60123456789" }
 
   - name: "pricing"
     label: "Invitation Pricing"
@@ -33,21 +39,24 @@ collections:
             fields:
               - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
-              - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
+              - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p. If both a video and image are set, the video is used." }
+              - { label: "Preview Image (used if no video is set)", name: "previewImage", widget: "image", required: false }
           - label: "Classic Cinematic"
             name: "classicCinematic"
             widget: "object"
             fields:
               - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
-              - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
+              - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p. If both a video and image are set, the video is used." }
+              - { label: "Preview Image (used if no video is set)", name: "previewImage", widget: "image", required: false }
           - label: "Filmy Edition"
             name: "filmyEdition"
             widget: "object"
             fields:
               - { label: "Price (RM)", name: "price", widget: "number", value_type: "int" }
               - { label: "Original Price (optional, for discounts)", name: "originalPrice", widget: "number", value_type: "int", required: false }
-              - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p." }
+              - { label: "Preview Video (short clip, keep under ~5MB)", name: "previewVideo", widget: "file", required: false, hint: "Short muted preview clip, ideally under 15 seconds and 720p. If both a video and image are set, the video is used." }
+              - { label: "Preview Image (used if no video is set)", name: "previewImage", widget: "image", required: false }
 
   - name: "gifts"
     label: "Gift Products"
@@ -85,6 +94,32 @@ collections:
                   - "Wedding & Engagement Favors"
                   - "Custom Welcome Board"
                   - "Gifts for Loved Ones"
+
+  - name: "portfolioSamples"
+    label: "Collections — Style Samples"
+    files:
+      - file: "content/portfolioSamples.json"
+        label: "Invitation Style Samples"
+        name: "portfolioSamples"
+        fields:
+          - label: "Minimalistic Samples"
+            name: "minimalistic"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Video (used instead of image if set)", name: "video", widget: "file", required: false }
+          - label: "Classic Cinematic Samples"
+            name: "classicCinematic"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Video (used instead of image if set)", name: "video", widget: "file", required: false }
+          - label: "Filmy Edition Samples"
+            name: "filmyEdition"
+            widget: "list"
+            fields:
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Video (used instead of image if set)", name: "video", widget: "file", required: false }
 
   - name: "testimonials"
     label: "Testimonials"

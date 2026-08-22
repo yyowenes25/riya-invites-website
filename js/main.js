@@ -41,6 +41,42 @@ async function applySettings() {
       el.textContent = '';
     }
   });
+  if (settings.footerDesc) {
+    const el = document.getElementById('footerDesc');
+    if (el) el.textContent = settings.footerDesc;
+  }
+  if (settings.socialTiktok) {
+    const el = document.getElementById('footerTiktok');
+    if (el) el.href = settings.socialTiktok;
+  }
+  if (settings.socialInstagram) {
+    const el = document.getElementById('footerInstagram');
+    if (el) el.href = settings.socialInstagram;
+  }
+  if (settings.socialWhatsapp) {
+    const el = document.getElementById('footerWhatsapp');
+    if (el) el.href = settings.socialWhatsapp;
+  }
+  if (settings.founderPhoto) {
+    const el = document.getElementById('founderPhotoSlot');
+    if (el) {
+      el.style.backgroundImage = `url('${settings.founderPhoto}')`;
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      const ph = el.querySelector('.placeholder-label');
+      if (ph) ph.style.display = 'none';
+    }
+  }
+  if (settings.giftsTeaserImage) {
+    const el = document.getElementById('giftsTeaserSlot');
+    if (el) {
+      el.style.backgroundImage = `url('${settings.giftsTeaserImage}')`;
+      el.style.backgroundSize = 'cover';
+      el.style.backgroundPosition = 'center';
+      const ph = el.querySelector('.placeholder-label');
+      if (ph) ph.style.display = 'none';
+    }
+  }
 }
 
 async function applyPricing() {
@@ -68,6 +104,14 @@ async function applyPricing() {
           videoEl.style.cssText = 'position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1;';
           el.appendChild(videoEl);
         }
+      });
+    } else if (data.previewImage) {
+      document.querySelectorAll(`[data-video-id="${id}"]`).forEach((el) => {
+        const placeholder = el.querySelector('.placeholder-label');
+        if (placeholder) placeholder.style.display = 'none';
+        el.style.backgroundImage = `url('${data.previewImage}')`;
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
       });
     }
   });
@@ -213,6 +257,55 @@ async function applyGiftCollectionTabs() {
   });
 }
 
+// Populates the 3 invite-style sample tabs on the Collections page (image or
+// video per sample). Falls back to a plain placeholder if neither is set.
+async function applyPortfolioSamples() {
+  const grids = document.querySelectorAll('.style-samples-grid');
+  if (grids.length === 0) return;
+  const data = await loadJSON('/content/portfolioSamples.json');
+  if (!data) return;
+
+  grids.forEach((grid) => {
+    const key = grid.dataset.styleKey;
+    const priceName = grid.dataset.priceName;
+    const btnClass = grid.dataset.btnClass || 'btn-outline';
+    const samples = Array.isArray(data[key]) ? data[key] : [];
+
+    grid.innerHTML = samples.map((sample, i) => {
+      let mediaHTML = `<p class="placeholder-label">Sample ${i + 1}<br>placeholder</p>`;
+      if (sample.video) {
+        mediaHTML = `<video src="${sample.video}" autoplay muted loop playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></video>`;
+      } else if (sample.image) {
+        mediaHTML = `<div style="position:absolute; inset:0; background-image:url('${sample.image}'); background-size:cover; background-position:center;"></div>`;
+      }
+      const priceMatch = priceName.match(/RM(\d+)/);
+      const priceLabel = priceMatch ? `RM${priceMatch[1]}` : '';
+      return `
+        <div class="portfolio-item-card">
+          ${mediaHTML}
+          <div class="portfolio-item-foot">
+            <span class="price">${priceLabel}</span>
+            <button class="btn ${btnClass}" data-add-to-cart data-name="${priceName}" data-label="Add to Cart">Add to Cart</button>
+          </div>
+        </div>
+      `;
+    }).join('');
+  });
+
+  // Newly-created buttons need their click handlers wired.
+  document.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
+    if (btn.dataset.wired) return;
+    btn.dataset.wired = 'true';
+    btn.addEventListener('click', () => {
+      const name = (btn.dataset.name || 'Item').replace(/\s*\(RM[\d,.]+\)\s*/, '').trim();
+      const price = getLivePriceFromButton(btn) || parseFloat((btn.dataset.name || '').match(/RM([\d,.]+)/)?.[1]?.replace(/,/g, '')) || 0;
+      addToCart(name, price);
+      btn.textContent = 'Added ✓';
+      setTimeout(() => { btn.textContent = btn.dataset.label || 'Add to Cart'; }, 1400);
+    });
+  });
+}
+
 async function applyTestimonials() {
   const container = document.getElementById('testimonialsContainer');
   if (!container) return;
@@ -301,6 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
   applyHeroSlideshow();
   applyGiftsGrid();
   applyGiftCollectionTabs();
+  applyPortfolioSamples();
   applyTestimonials();
   applyGallery();
   initPortfolioTabs();
@@ -316,6 +410,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.querySelectorAll('[data-add-to-cart]').forEach((btn) => {
+    if (btn.dataset.wired) return;
+    btn.dataset.wired = 'true';
     btn.addEventListener('click', () => {
       const name = (btn.dataset.name || 'Item').replace(/\s*\(RM[\d,.]+\)\s*/, '').trim();
       const price = getLivePriceFromButton(btn) || parseFloat((btn.dataset.name || '').match(/RM([\d,.]+)/)?.[1]?.replace(/,/g, '')) || 0;
