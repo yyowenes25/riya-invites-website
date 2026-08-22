@@ -4,7 +4,7 @@
       "title": "Kashmiri Bangles Wedding Favors",
       "image": "/images/uploads/hand_holding_bangle_packaging_card_202608222214.jpeg",
       "description": "Delight your wedding guests with this charming set of 4 Kashmiri bangles featuring delicate, chiming ghungroos. Presented on a custom-designed backing card personalized with your names and event date, these traditional keepsakes are ideal for mehendi, sangeet, haldi, and nikah favors.\n\n✾Includes: Set of 4 Kashmiri bangles\n\n✾Personalization: Custom couple names and event date on packaging card\n\n✾Ideal For: Indian and South Asian pre-wedding celebrations and ceremonies",
-      "unitLabel": "Set",
+      "unitLabel": "Sets",
       "tiers": [
         {
           "quantity": 20,
@@ -33,7 +33,7 @@
       "title": "Traditional Jhumka Wedding Favors",
       "image": "/images/uploads/arranging_jhumka_packaging_and_a…_202608222156.jpeg",
       "description": "Thank your guests with a timeless keepsake they will love to wear! These elegant, lightweight jhumkas add a touch of traditional grace to any celebration. Each pair comes ready for gifting on a custom-designed packaging card personalized with your names and event date.\n\n✾Includes: 1 pair of classic jhumka earrings\n\n✾Personalization: Custom couple names and event date on packaging card\n\n✾Ideal For: Mehendi, sangeet, haldi, and wedding reception favors",
-      "unitLabel": "Pair",
+      "unitLabel": "Pairs",
       "tiers": [
         {
           "quantity": 20,
@@ -62,7 +62,7 @@
       "title": "Traditional Jhumka Wedding Favors ",
       "image": "/images/uploads/arranging_jhumka_packaging_and_a…_202608222159.jpeg",
       "description": "Thank your guests with a timeless keepsake they will love to wear! These elegant, lightweight jhumkas add a touch of traditional grace to any celebration. Each pair comes ready for gifting on a custom-designed packaging card personalized with your names and event date.\n\n✾Includes: 1 pair of classic jhumka earrings\n\n✾Personalization: Custom couple names and event date on packaging card\n\n✾Ideal For: Mehendi, sangeet, haldi, and wedding reception favors",
-      "unitLabel": "Pair",
+      "unitLabel": "Pairs",
       "tiers": [
         {
           "quantity": 20,
@@ -91,7 +91,7 @@
       "title": "Custom Wedding Party Sunglasses Favors",
       "image": "/images/uploads/file_0000000075248211b3487a5c35871935.png",
       "description": "Bring the fun and block the sun in style with these trendy custom sunglasses! Perfect for your bridal party and guests, each pair features fun printed lenses like \"Team Bride\" or \"Team Groom.\" They come presented on a stunning, vibrant packaging card featuring custom artwork that can be personalized with the couple's names and event date.\n\n✾Includes: Black framed sunglasses with printed lenses (e.g., Team Bride / Team Groom) \n\n✾Personalization: Custom couple names and event date on packaging card\n\n✾Ideal For: Mehendi, sangeet, pool parties, destination weddings, and reception favors",
-      "unitLabel": "Set",
+      "unitLabel": "Sets",
       "tiers": [
         {
           "quantity": 20,
@@ -117,15 +117,11 @@
       "category": "Wedding & Engagement Favors"
     },
     {
-      "title": "Custom Wedding Chocolate Favors",
+      "title": "Personalized Wedding Chocolate Favors",
       "image": "/images/uploads/e31b2c4961bd6bf522a3d24a63c0eb89_1775097868.webp_2k_202608210153.jpeg",
-      "description": "Give your guests a sweet taste of celebration with these delightful custom chocolate bars! Each treat comes wrapped in a beautifully illustrated custom wrapper featuring traditional Indian wedding artwork that can be personalized with the couple's names and a special message.\n\nIncludes: Cadbury(34g) chocolate bars wrapped in custom-designed packaging\n\nIdeal For: Welcome hampers, mehendi giveaways, sangeet favors, and wedding reception thank-yous",
-      "unitLabel": "Set",
+      "description": "Give your guests a sweet taste of celebration with these delightful custom chocolate bars! Each treat comes wrapped in a beautifully illustrated custom wrapper featuring traditional Indian wedding artwork that can be personalized with the couple's names and a special message.\n\n✾Includes: Cadbury(34g) chocolate bars wrapped in custom-designed packaging\n\n✾Ideal For: Welcome hampers, mehendi giveaways, sangeet favors, and wedding reception thank-yous",
+      "unitLabel": "Pieces",
       "tiers": [
-        {
-          "quantity": 20,
-          "price": 230
-        },
         {
           "quantity": 50,
           "price": 492
@@ -146,33 +142,17 @@
       "category": "Wedding & Engagement Favors"
     },
     {
-      "title": "",
-      "image": "",
-      "description": "",
-      "unitLabel": "Set",
+      "title": "Personalized Wedding Welcome Board (A1 Canvas)",
+      "image": "/images/uploads/1787420047147.png",
+      "description": "Greet your guests in breathtaking style with this custom-designed wedding welcome sign! Featuring romantic, illustrated artwork framed by traditional architectural details and vibrant florals, it sets a magical tone the moment your guests arrive. Fully personalized with your names and special date, this piece makes a stunning centerpiece for your venue entrance.\n\n✾Includes: 1x A1-size personalized canvas sign (Please note: Easel is not included)\n\n✾Personalization: Custom couple names, welcome message, and event date\n\n✾Ideal For: Wedding venue entrances, receptions, mehendi ceremonies, and sangeet night decor",
+      "unitLabel": "Piece",
       "tiers": [
         {
-          "quantity": 20,
-          "price": null
-        },
-        {
-          "quantity": 50,
-          "price": null
-        },
-        {
-          "quantity": 75,
-          "price": null
-        },
-        {
-          "quantity": 100,
-          "price": null
-        },
-        {
-          "quantity": 200,
-          "price": null
+          "quantity": 1,
+          "price": 145
         }
       ],
-      "category": ""
+      "category": "Custom Welcome Board"
     },
     {
       "title": "",
